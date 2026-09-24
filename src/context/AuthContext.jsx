@@ -2,7 +2,12 @@ import React, { createContext, useContext, useState, useEffect } from 'react';
 
 const AuthContext = createContext({});
 
-const SESSION_KEY = 'abdu_auth_session';
+const SESSION_KEY = 'mn_auth_session';
+
+// ── Single-user credentials ──────────────────────────────
+const APP_USERNAME = 'mn-client-programs';
+const APP_PASSWORD = 'mn-client-programs';
+// ────────────────────────────────────────────────────────
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
@@ -11,16 +16,19 @@ export const AuthProvider = ({ children }) => {
   const [authError, setAuthError] = useState(null);
 
   useEffect(() => {
-    // Check for existing valid session on app load
-    const storedSession = localStorage.getItem(SESSION_KEY) || sessionStorage.getItem(SESSION_KEY);
+    // Restore session on app load
+    const storedSession =
+      localStorage.getItem(SESSION_KEY) ||
+      sessionStorage.getItem(SESSION_KEY);
+
     if (storedSession) {
       try {
         const sessionData = JSON.parse(storedSession);
-        if (sessionData && sessionData.isAuthenticated && sessionData.username === 'abdulla') {
-          setUser({ username: 'abdulla', name: 'Abdulla' });
+        if (sessionData?.isAuthenticated && sessionData?.username === APP_USERNAME) {
+          setUser({ username: APP_USERNAME, name: 'MN Programs' });
           setIsAuthenticated(true);
         }
-      } catch (e) {
+      } catch {
         localStorage.removeItem(SESSION_KEY);
         sessionStorage.removeItem(SESSION_KEY);
       }
@@ -34,14 +42,12 @@ export const AuthProvider = ({ children }) => {
     const trimmedUsername = (usernameInput || '').trim();
     const rawPassword = passwordInput || '';
 
-    // Credentials check: username = abdulla, password = abdulla@7224
-    if (trimmedUsername === 'abdulla' && rawPassword === 'abdulla@7224') {
-      const userObj = { username: 'abdulla', name: 'Abdulla' };
-      
-      // Store session info WITHOUT storing password
+    if (trimmedUsername === APP_USERNAME && rawPassword === APP_PASSWORD) {
+      const userObj = { username: APP_USERNAME, name: 'MN Programs' };
+
       const sessionPayload = {
         isAuthenticated: true,
-        username: 'abdulla',
+        username: APP_USERNAME,
         loginTime: Date.now(),
       };
 

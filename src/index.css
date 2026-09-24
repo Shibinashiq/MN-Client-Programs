@@ -23,6 +23,14 @@ body {
   min-width: 320px;
   min-height: 100vh;
   background-color: #090d16;
+  /* Safe-area insets for notched / home-bar devices */
+  padding-left: env(safe-area-inset-left);
+  padding-right: env(safe-area-inset-right);
+  overflow-x: hidden;
+}
+
+img, video, svg {
+  max-width: 100%;
 }
 
 /* Scrollbar styling */
@@ -50,12 +58,14 @@ body {
   inset: 0;
   background: rgba(0, 0, 0, 0.72);
   backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
   z-index: 1000;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 1rem;
   animation: fadeInBackdrop 0.2s ease;
+  overflow-y: auto;
 }
 
 @keyframes fadeInBackdrop {
@@ -69,8 +79,10 @@ body {
   border-radius: 20px;
   padding: 1.75rem;
   width: 100%;
+  max-width: 100%;
   box-shadow: 0 24px 60px rgba(0, 0, 0, 0.6);
   animation: slideUpModal 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
 }
 
 @keyframes slideUpModal {
@@ -101,6 +113,7 @@ body {
   color: #94a3b8;
   width: 36px;
   height: 36px;
+  min-width: 36px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -123,6 +136,7 @@ body {
   margin-top: 1.5rem;
   padding-top: 1.25rem;
   border-top: 1px solid rgba(255, 255, 255, 0.07);
+  flex-wrap: wrap;
 }
 
 .modal-cancel-btn {
@@ -212,19 +226,32 @@ body {
   color: #475569;
 }
 
+@media (max-width: 768px) {
+  .modal-backdrop {
+    align-items: flex-start;
+    padding: 0.75rem;
+  }
+  .modal-card {
+    margin: auto 0;
+  }
+}
+
 @media (max-width: 640px) {
   .modal-backdrop {
     padding: 0.5rem;
+    align-items: flex-start;
   }
   .modal-card {
     padding: 1.15rem;
     border-radius: 14px;
+    margin: auto 0;
   }
   .modal-header {
     margin-bottom: 1rem;
   }
   .view-modal-title {
-    font-size: 1.15rem;
+    font-size: 1.1rem;
+    word-break: break-word;
   }
   .modal-footer {
     flex-direction: column-reverse;
@@ -232,9 +259,12 @@ body {
     margin-top: 1rem;
     padding-top: 1rem;
   }
-  .modal-cancel-btn, .modal-submit-btn, .delete-danger-btn {
+  .modal-cancel-btn,
+  .modal-submit-btn,
+  .delete-danger-btn {
     width: 100%;
     justify-content: center;
+    text-align: center;
   }
 }
 

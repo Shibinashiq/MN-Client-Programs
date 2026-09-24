@@ -5,6 +5,7 @@
   display: flex;
   flex-direction: column;
   gap: 2rem;
+  overflow-x: hidden;
 }
 
 /* Header */
@@ -183,10 +184,11 @@
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 10px;
   color: #ffffff;
-  font-size: 0.9rem;
+  font-size: 1rem; /* 16px — prevents iOS auto-zoom */
   font-family: 'Inter', sans-serif;
   transition: all 0.2s ease;
   box-sizing: border-box;
+  max-width: 100%;
 }
 
 .form-group input:focus,
@@ -543,6 +545,12 @@
 .form-save-btn:hover {
   transform: translateY(-2px);
   box-shadow: 0 8px 24px rgba(6, 182, 212, 0.5);
+}
+
+@media (max-width: 900px) {
+  .form-row-3 {
+    grid-template-columns: 1fr 1fr;
+  }
 }
 
 @media (max-width: 768px) {

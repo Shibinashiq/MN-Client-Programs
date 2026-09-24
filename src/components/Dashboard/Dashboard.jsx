@@ -17,7 +17,7 @@ import {
 } from 'lucide-react';
 import './Dashboard.css';
 
-export const Dashboard = ({ events, onToast }) => {
+export const Dashboard = ({ events, loadingEvents, onToast }) => {
   const { user } = useAuth();
   const navigate = useNavigate();
   const [showSheetsModal, setShowSheetsModal] = useState(false);
@@ -35,7 +35,7 @@ export const Dashboard = ({ events, onToast }) => {
     return acc + pending;
   }, 0);
 
-  const username = user?.username || 'abdulla';
+  const username = user?.name || user?.username || 'MN Programs';
 
   return (
     <>

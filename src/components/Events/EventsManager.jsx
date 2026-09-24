@@ -25,7 +25,7 @@ import {
 } from 'lucide-react';
 import './EventsManager.css';
 
-export const EventsManager = ({ events, onDeleteEvent, onEditEvent, onToast }) => {
+export const EventsManager = ({ events, loadingEvents, onDeleteEvent, onEditEvent, onToast }) => {
   const navigate = useNavigate();
 
   const [searchQuery, setSearchQuery] = useState('');
@@ -176,17 +176,23 @@ export const EventsManager = ({ events, onDeleteEvent, onEditEvent, onToast }) =
       </div>
 
       {/* Events Grid */}
-      {filteredEvents.length === 0 ? (
+      {loadingEvents ? (
+        <div className="empty-events-card">
+          <div className="supabase-loading-spinner" />
+          <h3>Loading events…</h3>
+          <p>Fetching your events from the cloud database.</p>
+        </div>
+      ) : filteredEvents.length === 0 ? (
         <div className="empty-events-card">
           <Music size={48} className="empty-icon" />
           <h3>No events found</h3>
           <p>
-            {events.length === 0 
-              ? 'No singer events recorded yet. Click "+ Create New Event" to add your first program.' 
+            {events.length === 0
+              ? 'No singer events recorded yet. Click "+ Create New Event" to add your first program.'
               : 'No events match your selected status tab or search criteria.'}
           </p>
-          <button 
-            className="create-event-btn" 
+          <button
+            className="create-event-btn"
             onClick={() => {
               onEditEvent(null);
               navigate('/create-event');

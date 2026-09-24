@@ -20,7 +20,7 @@ export const Navbar = ({ onToast }) => {
     navigate('/login', { replace: true });
   };
 
-  const username = user?.username || 'abdulla';
+  const username = user?.name || user?.username || 'MN Programs';
 
   return (
     <header className="main-navbar">

@@ -203,7 +203,7 @@
     padding: 0.75rem 1rem;
     gap: 0.75rem;
   }
-  .brand-tag, .user-meta {
+  .brand-tag, .user-meta, .auth-status-indicator {
     display: none;
   }
   .logout-text {
@@ -245,6 +245,30 @@
   }
   .user-profile-badge {
     padding: 0.35rem 0.5rem;
+  }
+}
+
+@media (max-width: 420px) {
+  .navbar-container {
+    padding: 0.5rem 0.6rem;
+    gap: 0.5rem;
+  }
+  .nav-logo-icon {
+    width: 32px;
+    height: 32px;
+  }
+  .brand-name {
+    font-size: 0.9rem;
+  }
+  .nav-link span {
+    display: none; /* Show only icons on very small phones */
+  }
+  .nav-link {
+    padding: 0.5rem 0.6rem;
+    gap: 0;
+  }
+  .logout-btn {
+    padding: 0.45rem;
   }
 }
 

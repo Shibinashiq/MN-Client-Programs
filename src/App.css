@@ -3,6 +3,7 @@
   display: flex;
   flex-direction: column;
   background-color: #090d16;
+  overflow-x: hidden;
 }
 
 .app-wrapper {
@@ -12,6 +13,7 @@
   background-color: #090d16;
   color: #f8fafc;
   font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  overflow-x: hidden;
 }
 
 .app-main-content {
@@ -66,4 +68,11 @@
 .footer-content {
   max-width: 1320px;
   margin: 0 auto;
+}
+
+@media (max-width: 640px) {
+  .app-footer {
+    padding: 1rem 0.75rem;
+    margin-top: 1.5rem;
+  }
 }
