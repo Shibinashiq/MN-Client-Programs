@@ -5,8 +5,8 @@ const AuthContext = createContext({});
 const SESSION_KEY = 'mn_auth_session';
 
 // ── Single-user credentials ──────────────────────────────
-const APP_USERNAME = 'mn-client-programs';
-const APP_PASSWORD = 'mn-client-programs';
+const APP_USERNAME = 'abdulla';
+const APP_PASSWORD = 'abdulla@7224';
 // ────────────────────────────────────────────────────────
 
 export const AuthProvider = ({ children }) => {
@@ -25,7 +25,7 @@ export const AuthProvider = ({ children }) => {
       try {
         const sessionData = JSON.parse(storedSession);
         if (sessionData?.isAuthenticated && sessionData?.username === APP_USERNAME) {
-          setUser({ username: APP_USERNAME, name: 'MN Programs' });
+          setUser({ username: APP_USERNAME, name: 'Abdulla' });
           setIsAuthenticated(true);
         }
       } catch {
@@ -43,7 +43,7 @@ export const AuthProvider = ({ children }) => {
     const rawPassword = passwordInput || '';
 
     if (trimmedUsername === APP_USERNAME && rawPassword === APP_PASSWORD) {
-      const userObj = { username: APP_USERNAME, name: 'MN Programs' };
+      const userObj = { username: APP_USERNAME, name: 'Abdulla' };
 
       const sessionPayload = {
         isAuthenticated: true,
